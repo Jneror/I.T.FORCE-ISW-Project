@@ -109,6 +109,5 @@ def test():
 	load_quote('^DJI')
 
 if __name__ == '__main__':
-	test()
 
 	test()
