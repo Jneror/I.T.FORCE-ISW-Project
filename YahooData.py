@@ -22,41 +22,36 @@ _crumb = None
 
 # Headers to fake a user agent
 _headers={
-	'User-Agent': 'Mozilla/5.0 (X11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11'
+    'User-Agent': 'Mozilla/5.0 (X11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11'
 }
 
 def _get_cookie_crumb():
-	'''
-	This function perform a query and extract the matching cookie and crumb.
-	'''
+    # Perform a Yahoo financial lookup on SP500
+    req = urllib.request.Request('https://finance.yahoo.com/quote/^GSPC', headers=_headers)
+    f = urllib.request.urlopen(req)
+    alines = f.read().decode('utf-8')
 
-	# Perform a Yahoo financial lookup on SP500
-	req = urllib.request.Request('https://finance.yahoo.com/quote/^GSPC', headers=_headers)
-	f = urllib.request.urlopen(req)
-	alines = f.read().decode('utf-8')
+    global _crumb
+    cs = alines.find('CrumbStore')
+    cr = alines.find('crumb', cs + 10)
+    cl = alines.find(':', cr + 5)
+    q1 = alines.find('"', cl + 1)
+    q2 = alines.find('"', q1 + 1)
+    crumb = alines[q1 + 1:q2]
+    _crumb = crumb
 
-	# Extract the crumb from the response
-	global _crumb
-	cs = alines.find('CrumbStore')
-	cr = alines.find('crumb', cs + 10)
-	cl = alines.find(':', cr + 5)
-	q1 = alines.find('"', cl + 1)
-	q2 = alines.find('"', q1 + 1)
-	crumb = alines[q1 + 1:q2]
-	_crumb = crumb
+    # Extract the cookie from cookiejar
+    global cookier, _cookie
+    for c in cookier.cookiejar:
+        if c.domain != '.yahoo.com':
+            continue
+        if c.name != 'B':
+            continue
+        _cookie = c.value
 
-	# Extract the cookie from cookiejar
-	global cookier, _cookie
-	for c in cookier.cookiejar:
-		if c.domain != '.yahoo.com':
-			continue
-		if c.name != 'B':
-			continue
-		_cookie = c.value
-
-	# Print the cookie and crumb
-	#print('Cookie:', _cookie)
-	#print('Crumb:', _crumb)
+    # Print the cookie and crumb
+    #print('Cookie:', _cookie)
+    #print('Crumb:', _crumb)
 
 def load_yahoo_quote(ticker, begindate, enddate, info = 'quote'):
 	'''
@@ -91,22 +86,27 @@ def load_yahoo_quote(ticker, begindate, enddate, info = 'quote'):
 	# There is no need to enter the cookie here, as it is automatically handled by opener
 	f = urllib.request.urlopen(req)
 	alines = f.read().decode('utf-8')
-	#print(alines)
+	print(alines)
 	return alines.split('\n')
 
-def load_quote(ticker):
-	print('===', ticker, '===')
-	print(load_yahoo_quote(ticker, '20170515', '20170517'))
-	print(load_yahoo_quote(ticker, '20170515', '20170517', 'dividend'))
-	print(load_yahoo_quote(ticker, '20170515', '20170517', 'split'))
+def load_quote(ticker, date1, date2):
+    print('===', ticker, '===')
+    data = load_yahoo_quote(ticker, date1, date2)
+    data = [i.split(',') for i in data][1:-1]
+    for i in range(len(data)):
+        data[i] = [data[i][0],] + list(map(lambda x: float(x), data[i][1:]))
+    #[string Date, float Open,float High,float Low,float Close,float Adj Close,float Volume]
+    print(data)
+    #print(load_yahoo_quote(ticker, date1, date2, 'dividend'))
+    #print(load_yahoo_quote(ticker, date1, date2, 'split'))
 
 def test():
 	# Download quote for stocks
-	load_quote('QCOM')
-	load_quote('C')
+	#load_quote('QCOM','20170501', '20170517')
+	load_quote('C','20170501', '20170517')
 
 	# Download quote for index
-	load_quote('^DJI')
+	#load_quote('^DJI')
 
 if __name__ == '__main__':
 	test()
