@@ -1,8 +1,8 @@
 from tkinter import *
-from main import *
+from YahooData import *
 
 def imprimir():
-	print(load_yahoo_quote(empresa.get(),fechaInicio.get(),fechaTermino.get()))
+	print(load_quote(empresa.get(),fechaInicio.get(),fechaTermino.get()))
 
 ventana = Tk()
 ventana.title("Cateando")
