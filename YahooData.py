@@ -99,6 +99,7 @@ def load_quote(ticker, date1, date2):
     print(data)
     #print(load_yahoo_quote(ticker, date1, date2, 'dividend'))
     #print(load_yahoo_quote(ticker, date1, date2, 'split'))
+    return data
 
 def test():
 	# Download quote for stocks
