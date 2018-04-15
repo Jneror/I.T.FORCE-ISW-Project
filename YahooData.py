@@ -79,27 +79,25 @@ def load_yahoo_quote(ticker, begindate, enddate, info = 'quote'):
 	param['crumb'] = _crumb
 	params = urllib.parse.urlencode(param)
 	url = 'https://query1.finance.yahoo.com/v7/finance/download/{}?{}'.format(ticker, params)
-	#print(url)
 	req = urllib.request.Request(url, headers=_headers)
 
 	# Perform the query
 	# There is no need to enter the cookie here, as it is automatically handled by opener
 	f = urllib.request.urlopen(req)
 	alines = f.read().decode('utf-8')
-	print(alines)
 	return alines.split('\n')
 
 def load_quote(ticker, date1, date2):
-    print('===', ticker, '===')
-    data = load_yahoo_quote(ticker, date1, date2)
-    data = [i.split(',') for i in data][1:-1]
-    for i in range(len(data)):
-        data[i] = [data[i][0],] + list(map(lambda x: float(x), data[i][1:]))
-    #[string Date, float Open,float High,float Low,float Close,float Adj Close,float Volume]
-    print(data)
-    #print(load_yahoo_quote(ticker, date1, date2, 'dividend'))
-    #print(load_yahoo_quote(ticker, date1, date2, 'split'))
-    return data
+	print('===', ticker, '===')
+	data = load_yahoo_quote(ticker, date1, date2)
+	data = [i.split(',') for i in data][1:-1]
+	for i in range(len(data)):
+		data[i] = [data[i][0],] + list(map(lambda x: float(x), data[i][1:]))
+	return data
+	#[string Date, float Open,float High,float Low,float Close,float Adj Close,float Volume]
+	#print(load_yahoo_quote(ticker, date1, date2, 'dividend'))
+	#print(load_yahoo_quote(ticker, date1, date2, 'split'))
+    
 
 def test():
 	# Download quote for stocks
