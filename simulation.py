@@ -16,11 +16,12 @@ def monte_carlo(n,S0,K,r,sigma,T):
 	m = 1000
 	dt = T/m
 	suma = 0
-	W = np.random.normal(0,dt,1000)
 	for i in range(n):
 		S = S0
 		for j in range(m):
+			W = np.random.normal(0,dt)
 			S = S*np.exp((r-0.5*sigma**2)*dt+sigma*W)
+          
 		suma = suma + np.exp(-r*T)*max(S-K,0)
 	value = suma/n
 	return value
