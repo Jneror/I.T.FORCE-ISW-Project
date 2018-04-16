@@ -2,11 +2,17 @@ from tkinter import *
 from YahooData import *
 from simulation import *
 
-def imprimir():
+def calculate():
 	data = load_quote(empresa.get(),fechaInicio.get(),fechaTermino.get())
-	print(data)
-	print(volatility(data))
-	print(mean(data))
+	sigma = volatility(data)
+	print(sigma)
+	N = int(n.get())
+	SO = data[0][4]
+	k = float(strike.get())
+	R = float(r.get())
+	Tm = float(T.get())
+	print(monte_carlo(N,S0,k,R,sigma,Tm))
+
 
 
 ventana = Tk()
@@ -42,6 +48,6 @@ nEntry = Entry(ventana, textvariable=n).place(x=150,y=160)
 rLabel = Label(ventana, text="r").place(x=10,y=190)
 rEntry = Entry(ventana, textvariable=r).place(x=120,y=190)
 
-boton = Button(ventana,text="Enviar",command=imprimir).place(x=10,y=220)
+boton = Button(ventana,text="Enviar",command=calculate).place(x=10,y=220)
 
 ventana.mainloop()
