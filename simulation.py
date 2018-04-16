@@ -21,7 +21,6 @@ def monte_carlo(n,S0,K,r,sigma,T):
 		for j in range(m):
 			W = np.random.normal(0,dt)
 			S = S*np.exp((r-0.5*sigma**2)*dt+sigma*W)
-          
 		suma = suma + np.exp(-r*T)*max(S-K,0)
 	value = suma/n
 	return value
