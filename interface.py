@@ -7,7 +7,7 @@ def calculate():
 	sigma = volatility(data)
 	print(sigma)
 	N = int(n.get())
-	SO = data[0][4]
+	S0 = data[0][4]
 	k = float(strike.get())
 	R = float(r.get())
 	Tm = float(T.get())
