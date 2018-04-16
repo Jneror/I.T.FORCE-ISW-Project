@@ -1,8 +1,13 @@
 from tkinter import *
 from YahooData import *
+from simulation import *
 
 def imprimir():
-	print(load_quote(empresa.get(),fechaInicio.get(),fechaTermino.get()))
+	data = load_quote(empresa.get(),fechaInicio.get(),fechaTermino.get())
+	print(data)
+	print(volatility(data))
+	print(mean(data))
+
 
 ventana = Tk()
 ventana.title("Cateando")
