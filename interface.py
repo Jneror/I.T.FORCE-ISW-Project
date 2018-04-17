@@ -5,7 +5,6 @@ from simulation import *
 def calculate():
 	data = load_quote(empresa.get(),fechaInicio.get(),fechaTermino.get())
 	sigma = volatility(data)
-	print(sigma)
 	N = int(n.get())
 	S0 = data[0][4]
 	k = float(strike.get())
