@@ -11,7 +11,9 @@ def calculate():
 	k = float(strike.get())
 	R = float(r.get())
 	Tm = float(T.get())
-	print(monte_carlo(N,S0,k,R,sigma,Tm))
+	mc = monte_carlo(N,S0,k,R,sigma,Tm)
+	result = Label(ventana, text= "el valor de la opción es: " + str(mc)).place(x=10,y=250)
+	result.pack()
 
 
 
