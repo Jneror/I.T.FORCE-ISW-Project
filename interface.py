@@ -13,7 +13,6 @@ def calculate():
 	Tm = float(T.get())
 	mc = monte_carlo(N,S0,k,R,sigma,Tm)
 	result = Label(ventana, text= "el valor de la opción es: " + str(mc)).place(x=10,y=250)
-	result.pack()
 
 
 
