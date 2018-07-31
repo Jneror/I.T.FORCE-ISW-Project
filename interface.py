@@ -10,7 +10,7 @@ def calculate():
 	k = float(strike.get())
 	R = float(r.get())
 	Tm = float(T.get())
-	mc = monte_carlo(N,S0,k,R,sigma,Tm)
+	mc = np.mean(monte_carlo(N,S0,k,R,sigma,Tm, True))
 	result = Label(ventana, text= "el valor de la opción es: " + str(mc)).place(x=10,y=250)
 
 
