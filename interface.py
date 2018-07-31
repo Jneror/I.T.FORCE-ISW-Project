@@ -1,7 +1,10 @@
 from tkinter import *
 from YahooData import *
 from simulation import *
-import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use("TkAgg")
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
+from matplotlib.figure import Figure
 
 def calculate():
 	data = load_quote(empresa.get(),fechaInicio.get(),fechaTermino.get())
@@ -18,14 +21,25 @@ def calculate():
 	else:
 		prices = monte_carlo(N,S0,k,R,sigma,Tm, False)
 	mc = np.mean(prices)
-	plt.plot(prices)
+
+	f = Figure(figsize=(7,5), dpi = 80)
+	a = f.add_subplot(111)
+	a.plot(prices, color="red")
+	a.set(xlabel = "Iteración", ylabel = "priceOff", title = "Cambio del precio en distintas simulaciones")
+	a.grid()
+
+	ventana.geometry("950x450")
+	canvas = FigureCanvasTkAgg(f, ventana)
+	canvas.show()
+	canvas.get_tk_widget().place(x=350,y=10)
+
 	result = Label(ventana, text= "el valor de la opción es: " + str(mc)).place(x=10,y=300)
 
 
 
 ventana = Tk()
 ventana.title("Cateando")
-ventana.geometry("400x400")
+ventana.geometry("400x300")
 
 empresa = StringVar()
 fechaInicio = StringVar()
