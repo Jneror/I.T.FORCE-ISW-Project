@@ -1,6 +1,7 @@
 from tkinter import *
 from YahooData import *
 from simulation import *
+import matplotlib.pyplot as plt
 
 def calculate():
 	data = load_quote(empresa.get(),fechaInicio.get(),fechaTermino.get())
@@ -10,12 +11,15 @@ def calculate():
 	k = float(strike.get())
 	R = float(r.get())
 	Tm = float(T.get())
-	call = string(callOrPut.get)
+	call = str(callOrPut.get())
+	print(call)
 	if (call == "Call"):
-		mc = np.mean(monte_carlo(N,S0,k,R,sigma,Tm, True))
+		prices = monte_carlo(N,S0,k,R,sigma,Tm, True)
 	else:
-		mc = np.mean(monte_carlo(N,S0,k,R,sigma,Tm, False))
-	result = Label(ventana, text= "el valor de la opción es: " + str(mc)).place(x=10,y=250)
+		prices = monte_carlo(N,S0,k,R,sigma,Tm, False)
+	mc = np.mean(prices)
+	plt.plot(prices)
+	result = Label(ventana, text= "el valor de la opción es: " + str(mc)).place(x=10,y=300)
 
 
 
