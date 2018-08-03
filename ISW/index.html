@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Hellow World</title>
+    <script src="opcion.js"></script>
+</head>
+<body>
+     <form name="input">
+        <label for="empresa">Empresa</label>
+        <input type="text" name ="empresa">
+
+        <label for="fechaInicio">Fecha Inicio</label>
+        <input type="text" name="fechaInicio">
+
+        <label for="fechaTermino">Fecha Término</label>
+        <input type="text" name="fechaTermino">
+
+        <label for="strike">Strike</label>
+        <input type="text" name="strike">
+
+        <label for="tiempoMaduracion">Tiempo de Maduración</label>
+        <input type="text" name="tiempoMaduracion">
+
+        <label for="numSimulaciones">Número de Simulaciones</label>
+        <input type="text" name="numSimulaciones">
+
+        <label for="r">R</label>
+        <input type="text" name="r">
+
+        <label for="callOrPut">Call or put</label>
+        <input type="text" name="callOrPut">
+
+        <button type="button" onclick="enviar()">Send Nudes</button>
+    </form>
+    <script>
+        function enviar(){
+            var empresa = document.forms.input.elements.empresa.value;
+            console.log('empresa: '+ empresa);
+            var fechaInicio = document.forms.input.elements.fechaInicio.value;
+            console.log('Fecha Inicio: '+ fechaInicio);
+            var fechaTermino = document.forms.input.elements.fechaTermino.value;
+            console.log('Fecha Termino: '+ fechaTermino);
+            var strike = document.forms.input.elements.strike.value;
+            console.log('strike: '+ strike);
+            var tiempoMaduracion = document.forms.input.elements.tiempoMaduracion.value;
+            console.log('Tiempo de Maduración: '+ tiempoMaduracion);
+            var numSimulaciones = document.forms.input.elements.numSimulaciones.value;
+            console.log('Numero de simulaciones: '+ numSimulaciones);
+            var r = document.forms.input.elements.r.value;
+            console.log('R: '+ r);
+            var callOrPut = document.forms.input.elements.callOrPut.value;
+            console.log('Call or Put: '+ callOrPut);
+
+            var opcion = new Opcion(empresa,fechaInicio,fechaTermino,callOrPut,strike,tiempoMaduracion,numSimulaciones,r);
+            opcion.calcular();
+        }
+    </script>
+</body>
+</html>
