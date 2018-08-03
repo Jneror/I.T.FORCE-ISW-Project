@@ -24,7 +24,7 @@ def calculate():
 
 	f = Figure(figsize=(7,5), dpi = 80)
 	a = f.add_subplot(111)
-	a.plot(prices, color="red")
+	a.plot(prices, color="blue")
 	a.set(xlabel = "Iteración", ylabel = "priceOff", title = "Cambio del precio en distintas simulaciones")
 	a.grid()
 
