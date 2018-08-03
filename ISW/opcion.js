@@ -1,13 +1,12 @@
 class Opcion {
-    constructor(empresa,fechaInicio,fechaTermino,tipo,strike,tiempoMaduracion,numSimulaciones,r){
-        this.empresa=empresa;
-        this.fechaInicio=fechaInicio;
-        this.fechaTermino=fechaTermino;
+    constructor(tipo,strike,tiempoMaduracion,numSimulaciones,r,data){
         this.tipo=tipo;
         this.strike=strike;
         this.tiempoMaduracion=tiempoMaduracion;
         this.numSimulaciones=numSimulaciones;
         this.r=r;
+        this.data=data;
+        console.log('Opcion construida')
     }
     
     calcular(){
@@ -22,6 +21,7 @@ class Opcion {
             this.strike,
             this.tipo
         ]);
+        console.log('calculando')
         process.stdout.on('data',function(data){
             console.log(data.toString());
         })

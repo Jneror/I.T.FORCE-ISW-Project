@@ -1,4 +1,3 @@
-from YahooData import *
 import matplotlib
 matplotlib.use("TkAgg")
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
@@ -47,7 +46,6 @@ def monte_carlo(n, S0, K, r, sigma, T, call):
 	return prices
     
 def calculate():
-    data = load_quote(empresa,fechaInicio,fechaTermino)
     sigma = volatility(data)
     S0 = data[0][4]
     if (call == "Call"):
@@ -56,14 +54,12 @@ def calculate():
         prices = monte_carlo(N,S0,k,R,sigma,Tm, False)
     return np.mean(prices)
 
-empresa = str(sys.argv[1])
-fechaInicio = str(sys.argv[2])
-fechaTermino = str(sys.argv[3])
-Tm = float(sys.argv[4])
-N = int(sys.argv[5])
-R = float(sys.argv[6])
-k = float(sys.argv[7])
-call = str(sys.argv[8])
+Tm = float(sys.argv[1])
+N = int(sys.argv[2])
+R = float(sys.argv[3])
+k = float(sys.argv[4])
+call = str(sys.argv[5])
+data = str(sys.argv[6])
 
 result = {"promedio": calculate()}
 print(str(result))

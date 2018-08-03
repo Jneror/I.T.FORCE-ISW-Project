@@ -3,6 +3,7 @@
 <head>
     <title>Hellow World</title>
     <script src="opcion.js"></script>
+    <script src="DataController.js"></script>
 </head>
 <body>
      <form name="input">
@@ -51,8 +52,9 @@
             var callOrPut = document.forms.input.elements.callOrPut.value;
             console.log('Call or Put: '+ callOrPut);
 
-            var opcion = new Opcion(empresa,fechaInicio,fechaTermino,callOrPut,strike,tiempoMaduracion,numSimulaciones,r);
-            opcion.calcular();
+            var dataController = new DataController(empresa,fechaInicio,fechaTermino);
+            //var opcion = new Opcion(callOrPut,strike,tiempoMaduracion,numSimulaciones,r,dataController.getDataFromGateway());
+            //opcion.calcular();
         }
     </script>
 </body>
