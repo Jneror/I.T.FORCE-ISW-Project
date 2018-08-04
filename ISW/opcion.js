@@ -12,7 +12,7 @@ class Opcion {
     
     calcular(){
         var spawn = require('child_process').spawn;
-        var process = spawn('py',['./calcular.py',
+        var process = spawn('python',['./calcular.py',
             this.empresa,
             this.fechaInicio,
             this.fechaTermino,
