@@ -10,7 +10,6 @@ from six.moves import urllib
 #import urllib.request, urllib.parse, urllib.error
 
 import time
-import sys
 
 # Build the cookie handler
 cookier = urllib.request.HTTPCookieProcessor()
@@ -109,5 +108,3 @@ def test():
 
 if __name__ == '__main__':
 	test()
-print(str(load_quote(str(sys.argv[1]),str(sys.argv[2]),str(sys.argv[3]))))
-sys.stdout.flush()
