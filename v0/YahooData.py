@@ -91,6 +91,7 @@ def load_quote(ticker, date1, date2):
 	print('===', ticker, '===')
 	data = load_yahoo_quote(ticker, date1, date2)
 	data = [i.split(',') for i in data][1:-1]
+	data = []
 	for i in range(len(data)):
 		data[i] = [data[i][0],] + list(map(lambda x: float(x), data[i][1:]))
 	return data
