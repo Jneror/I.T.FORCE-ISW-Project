@@ -1,0 +1,83 @@
+<Form>:
+    id: form
+    GridLayout:  
+        padding: 10
+        spacing: 10
+        rows: 7
+        row_force_default: True
+        row_default_height: 40
+        col_default_width: 450
+        col_force_default: True
+        size_hint: .5, .8
+
+        BoxLayout:
+            Label:
+                text: 'Strike'
+                font_size: 18
+                size_hint_x: None
+                width: 215
+            TextInput:
+                id: strike
+                font_size: 18
+                multiline: False
+        
+        BoxLayout:
+            Label:
+                text: 'Tiempo de Maduracion'
+                font_size: 18
+                size_hint_x: None
+                width: 215
+            TextInput:
+                id: timeMadurity
+                font_size: 18
+                multiline: False
+
+        BoxLayout:
+            Label:
+                text: 'Numero de simulaciones'
+                font_size: 18
+                size_hint_x: None
+                width: 215
+            TextInput:
+                id: numSim
+                font_size: 18
+                multiline: False
+
+        BoxLayout:
+            Label:
+                text: 'Ratio libre de riesgo'
+                font_size: 18
+                size_hint_x: None
+                width: 215
+            TextInput:
+                id: riskFreeRate
+                font_size: 18
+                multiline: False
+
+        BoxLayout:
+            Label:
+                text: 'Empresa'
+                font_size: 18
+                size_hint_x: None
+                width: 215
+            TextInput:
+                id: company
+                font_size: 18
+                multiline: False
+
+        BoxLayout:
+            Label:
+                text: 'Fuente'
+                font_size: 18
+                size_hint_x: None
+                width: 215                
+            TextInput:
+                id: source
+                font_size: 18
+                multiline: False
+        
+        BoxLayout:
+            Button:
+                font_size: 18
+                text: 'Calcular'
+                on_press: form.sim(strike.text,timeMadurity.text,numSim.text,riskFreeRate.text,company.text,source.text)
