@@ -1,83 +1,69 @@
+#:kivy 1.10.1
 <Form>:
     id: form
-    GridLayout:  
-        padding: 10
-        spacing: 10
-        rows: 7
-        row_force_default: True
-        row_default_height: 40
-        col_default_width: 450
-        col_force_default: True
-        size_hint: .5, .8
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: None,None
+        size: 400,500
+        Label:
+            text: 'Strike'
+            font_size: 18
+        TextInput:
+            id: strike
+            font_size: 18
+            multiline: False
+            
+        Label:
+            text: 'Tiempo de Maduracion'
+            font_size: 18
+        TextInput:
+            id: timeMadurity
+            font_size: 18
+            multiline: False
 
-        BoxLayout:
-            Label:
-                text: 'Strike'
-                font_size: 18
-                size_hint_x: None
-                width: 215
-            TextInput:
-                id: strike
-                font_size: 18
-                multiline: False
+        Label:
+            text: 'Numero de simulaciones'
+            font_size: 18
+        TextInput:
+            id: numSim
+            font_size: 18
+            multiline: False
+
+        Label:
+            text: 'Ratio libre de riesgo'
+            font_size: 18
+        TextInput:
+            id: riskFreeRate
+            font_size: 18
+            multiline: False
+
+        Label:
+            text: 'Empresa'
+            font_size: 18
+        TextInput:
+            id: company
+            font_size: 18
+            multiline: False
+
+        Label:
+            text: 'Fuente'
+            font_size: 18
         
-        BoxLayout:
-            Label:
-                text: 'Tiempo de Maduracion'
-                font_size: 18
-                size_hint_x: None
-                width: 215
+        BoxLayout:   
             TextInput:
-                id: timeMadurity
-                font_size: 18
-                multiline: False
-
-        BoxLayout:
-            Label:
-                text: 'Numero de simulaciones'
-                font_size: 18
-                size_hint_x: None
-                width: 215
-            TextInput:
-                id: numSim
-                font_size: 18
-                multiline: False
-
-        BoxLayout:
-            Label:
-                text: 'Ratio libre de riesgo'
-                font_size: 18
-                size_hint_x: None
-                width: 215
-            TextInput:
-                id: riskFreeRate
-                font_size: 18
-                multiline: False
-
-        BoxLayout:
-            Label:
-                text: 'Empresa'
-                font_size: 18
-                size_hint_x: None
-                width: 215
-            TextInput:
-                id: company
-                font_size: 18
-                multiline: False
-
-        BoxLayout:
-            Label:
-                text: 'Fuente'
-                font_size: 18
-                size_hint_x: None
-                width: 215                
-            TextInput:
+                size_hint: .8,1
                 id: source
                 font_size: 18
                 multiline: False
-        
-        BoxLayout:
             Button:
+                size_hint: .2,1
                 font_size: 18
-                text: 'Calcular'
-                on_press: form.sim(strike.text,timeMadurity.text,numSim.text,riskFreeRate.text,company.text,source.text)
+                text: 'Buscar'
+            FileChooserListView:
+                id: filechooser
+                on_selection: source.text = filechooser.selection
+        
+        Button:
+            font_size: 18
+            text: 'Calcular'
+            on_press: form.sim(strike.text,timeMadurity.text,numSim.text,riskFreeRate.text,company.text,source.text)
