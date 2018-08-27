@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter.filedialog import askopenfilename
 from Option import Option
 import matplotlib
 matplotlib.use("TkAgg")
@@ -6,6 +7,11 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolb
 from matplotlib.figure import Figure
 
 import os
+
+def fileChooser():
+    filename = askopenfilename()
+    source.set(filename)
+    return
 
 def sim():
     numSim = int(n.get())
@@ -49,6 +55,7 @@ ventana = Tk()
 ventana.title("Cateando")
 ventana.geometry("500x350")
 
+
 empresa = StringVar()
 T = StringVar()
 n = StringVar()
@@ -80,6 +87,8 @@ rEntry = Entry(ventana, textvariable=r).place(x=150,y=170)
 sourceLabel = Label(ventana,text="Source").place(x=10,y=210)
 sourceOption = Entry(ventana,textvariable=source).place(x=150, y = 210)
 
-boton = Button(ventana,text="Enviar",command=sim).place(x=10,y=250)
+boton = Button(ventana,text="Buscar csv",command=fileChooser).place(x=10,y=270)
+
+boton = Button(ventana,text="Enviar",command=sim).place(x=10,y=240)
 
 ventana.mainloop()
