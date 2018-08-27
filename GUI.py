@@ -13,7 +13,7 @@ def fileChooser():
     source.set(filename)
     return
 
-def sim():
+def showResults():
     numSim = int(n.get())
     k = float(strike.get())
     riskFreeRate = float(r.get())
@@ -89,6 +89,6 @@ sourceOption = Entry(ventana,textvariable=source).place(x=150, y = 210)
 
 boton = Button(ventana,text="Buscar csv",command=fileChooser).place(x=10,y=240)
 
-boton = Button(ventana,text="Enviar",command=sim).place(x=10,y=280)
+boton = Button(ventana,text="Enviar",command=showResults).place(x=10,y=280)
 
 ventana.mainloop()
