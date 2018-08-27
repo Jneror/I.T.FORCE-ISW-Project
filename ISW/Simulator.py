@@ -5,6 +5,7 @@ def volatility(data):
     n = len(data)-1
     logaritmos = np.zeros(n)
     for i in range(n):
+        print(data[i+1], data[i])
         logaritmos[i] = np.log(data[i+1]/data[i])
     return np.std(logaritmos, dtype=np.float64)
 

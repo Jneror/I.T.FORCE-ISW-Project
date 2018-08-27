@@ -21,10 +21,10 @@ class Gateway:
         now = self.yahooDateFormat(pd.datetime.today())
         n_days_ago = self.yahooDateFormat(pd.datetime.today()-BDay(int(numDays*1.1)) )
         rawData = yd.load_yahoo_quote(company, n_days_ago, now)[:numDays+1]
-        data = np.array([np.array(i.split(',')) for i in rawData])
+        data = [i.split(',') for i in rawData]
         for i in range(1, numDays+1):
-            data[i] = np.array([data[i][0],] + list(map(lambda x: float(x), data[i][1:])))
-        df = pd.DataFrame(data = data[1:,:], columns = data[0])
+            data[i] = [data[i][0],] + list(map(lambda x: float(x), data[i][1:]))
+        df = pd.DataFrame(data = data[1:][:], columns = data[0])
         df = df.set_index("Date")
         df = df.drop(columns=['Adj Close'])
         return df

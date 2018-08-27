@@ -1,5 +1,6 @@
 from Simulator import simulate
 from DataCollector import DataCollector
+import matplotlib.pyplot as plt
 
 class Option:
 
@@ -28,7 +29,7 @@ class Option:
         return simulate(self.dc.data, self.numSim, self.t*365, self.t, self.r, self.k, "Put")
 
 if __name__ == "__main__":
-    opt = Option(10, 1, 1000, 0.01, "AMD", "../AMD.csv")
+    opt = Option(10, 1, 1000, 0.01, "AMD", "Yahoo")
     paths, endValues, priceOff = opt.simulateCall()
     print(priceOff)
     for path in paths:
