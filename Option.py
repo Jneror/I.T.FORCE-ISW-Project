@@ -1,6 +1,5 @@
 from Simulator import simulate
 from DataCollector import DataCollector
-import matplotlib.pyplot as plt
 
 class Option:
 
