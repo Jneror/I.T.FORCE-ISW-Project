@@ -49,7 +49,7 @@ def sim():
     canvas2.show()
     canvas2.get_tk_widget().place(x=350,y=210)
 
-    result = Label(ventana, text= "el valor de la opción es: " + str(priceOff)).place(x=10,y=300)
+    result = Label(ventana, text= "el valor de la opción es: " + str(priceOff)).place(x=10,y=310)
 
 ventana = Tk()
 ventana.title("Cateando")
@@ -63,7 +63,7 @@ r = StringVar()
 strike = StringVar()
 source = StringVar()
 
-empresa.set("AMD")
+empresa.set("FB")
 strike.set("100")
 T.set("1")
 n.set("100")
@@ -87,8 +87,8 @@ rEntry = Entry(ventana, textvariable=r).place(x=150,y=170)
 sourceLabel = Label(ventana,text="Source").place(x=10,y=210)
 sourceOption = Entry(ventana,textvariable=source).place(x=150, y = 210)
 
-boton = Button(ventana,text="Buscar csv",command=fileChooser).place(x=10,y=270)
+boton = Button(ventana,text="Buscar csv",command=fileChooser).place(x=10,y=240)
 
-boton = Button(ventana,text="Enviar",command=sim).place(x=10,y=240)
+boton = Button(ventana,text="Enviar",command=sim).place(x=10,y=280)
 
 ventana.mainloop()
