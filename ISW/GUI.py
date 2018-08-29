@@ -1,11 +1,11 @@
 from kivy.app import App
-from kivy.uix.screenmanager import ScreenManager,Screen
+from kivy.uix.anchorlayout import AnchorLayout
 from Option import Option
 import matplotlib.pyplot as plt
 
 import os
 
-class FormScreen(Screen):
+class Form(AnchorLayout):
     
     def sim(self,strike,timeMadurity,numSim,riskFreeRate,company,source):
         opt = Option(float(strike),int(timeMadurity),int(numSim),float(riskFreeRate),company,source)
@@ -17,13 +17,9 @@ class FormScreen(Screen):
         plt.hist(endValues, 40)
         plt.show()
 
-class Manager(ScreenManager):
-    form_screen = ObjectProperty(None)
-    graphic_screen = ObjectProperty(None)
-
 class GUIApp(App):
     def build(self):
-        return Manager()
+        return Form()
 
 GUI = GUIApp()
 

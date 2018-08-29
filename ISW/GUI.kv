@@ -5,6 +5,7 @@
         orientation: 'vertical'
         size_hint: None,None
         size: 400,500
+        anchor_x: 'left'
         Label:
             text: 'Strike'
             font_size: 18
@@ -59,11 +60,15 @@
                 size_hint: .2,1
                 font_size: 18
                 text: 'Buscar'
-            FileChooserListView:
-                id: filechooser
-                on_selection: source.text = filechooser.selection
         
         Button:
             font_size: 18
             text: 'Calcular'
             on_press: form.sim(strike.text,timeMadurity.text,numSim.text,riskFreeRate.text,company.text,source.text)
+    BoxLayout:
+        anchor_x: 'right'
+        size_hint: None,None
+        size: 400,500
+        FileChooserListView:
+                id: filechooser
+                on_selection: source.text = filechooser.selection
