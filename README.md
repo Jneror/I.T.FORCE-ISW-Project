@@ -1,5 +1,8 @@
-## I.T. FORCE
+## I.T. FORCE: Option Simulation
 
-Se tienen 2 versiones del programa:
-+ Una versión inicial hecha en python que contiene el resultado y el gráfico. Para ejecutarla se debe ejecutar por terminal: python interface.py
-+ Una versión hecha con Electron, que sigue el diagrama de clases presentado en el entregable 2, pero los resultados aún no están completamente resueltos. Para ejecutar esta versión, entrar en la carpeta ISW y ejecutar por terminal: npm install y luego npm start.
+Para correr el programa ejecute el siguiente comando:
+```
+python GUI.py
+```
+* Los campos a completar están rellenos con un ejemplo, para que sepan cual es el formato de los parámetros a ingresar.
+* Source puede ser Yahoo, Alpha o la ruta de algún archivo. Se puede copiar directamente la ruta del archivo, o buscarlo con el boton **buscar csv**.

@@ -1,9 +1,0 @@
-#:kivy 1.10.1
-<BrowseFileScreen>:
-    id: browse
-    Button:
-        text: "open"
-        on_release: browse.open(filechooser.path, filechooser.selection)
-    FileChooserListView:
-        id: filechooser
-        on_selection: browse.selected(filechooser.selection)
