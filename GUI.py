@@ -52,7 +52,7 @@ def showResults():
     result = Label(ventana, text= "el valor de la opción es: " + str(priceOff)).place(x=10,y=310)
 
 ventana = Tk()
-ventana.title("Cateando")
+ventana.title("I.T. Force: Option Simulation")
 ventana.geometry("500x350")
 
 
